@@ -1,0 +1,7 @@
+{
+  "name": "ExpresosApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

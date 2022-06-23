@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl,  Validators,  FormBuilder } from '@angular/forms'
+import { Router, RouterLink } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ export class HomePage {
   
   token = '2234'
   
-  constructor(public fb: FormBuilder, public alertController: AlertController) {
+  constructor(public fb: FormBuilder, public alertController: AlertController, private router: Router) {
   
     this.formularioLogin = this.fb.group({
       'usuario': new FormControl("",Validators.required),
@@ -27,6 +28,7 @@ export class HomePage {
     var usuario = JSON.parse(localStorage.getItem('usuario'))
     if(usuario.usuario == f.usuario && usuario.password == f.password){
       console.log('Ingresado');
+      this.router.navigate(['/usuario'])
 
     }else{
       const alert = await this.alertController.create({

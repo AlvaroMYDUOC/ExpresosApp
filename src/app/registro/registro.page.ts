@@ -37,12 +37,22 @@ export class RegistroPage implements OnInit {
     
         await alert.present();
         return;
-      }
+      }else{
       var usuario={
         usuario: f.usuario,
         password : f.password,
+        
       }
       localStorage.setItem('usuario',JSON.stringify(usuario));
+      const alert = await this.alertController.create({
+        header: 'Datos Registrados',
+        message: 'Los datos fueron guardados correctamente',
+        buttons: ['OK']
+      });
+  
+      await alert.present();
+      return;
+    }
     }
   }
 

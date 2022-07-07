@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl,  Validators,  FormBuilder } from '@angular/forms'
 import { Router, RouterLink } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -13,7 +13,10 @@ export class HomePage {
   
   token = '2234'
   
-  constructor(public fb: FormBuilder, public alertController: AlertController, private router: Router) {
+  constructor(public fb: FormBuilder, 
+    public alertController: AlertController, 
+    private router: Router,
+    public navCtrl: NavController) {
   
     this.formularioLogin = this.fb.group({
       'usuario': new FormControl("",Validators.required),
@@ -29,7 +32,7 @@ export class HomePage {
     if(usuario.usuario == f.usuario && usuario.password == f.password){
       console.log('Ingresado');
       this.router.navigate(['/usuario'])
-
+      localStorage.setItem('ingresado','true');
     }else{
       const alert = await this.alertController.create({
         header: 'Datos Incorrectos',

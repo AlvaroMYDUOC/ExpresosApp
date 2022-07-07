@@ -1,5 +1,7 @@
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+
 <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="white">
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
@@ -9,7 +11,7 @@
 
 <ion-content>
     <ion-list>
-        <ion-item>
+        <ion-item color="white">
             <ion-select placeholder="Seleccione línea" [(ngModel)]="linea_selecta" (ionChange)="recoverAlertValue($event)">
                 <ion-select-option value="406">406</ion-select-option>
                 <ion-select-option value="402">402</ion-select-option>
@@ -17,12 +19,18 @@
             </ion-select>
         </ion-item>
     </ion-list>
-    <ion-label style="text-align: center;">
+    <ion-label style="text-align: center;" color="primary">
         <h1>Recorrido</h1>
     </ion-label>
-    <ion-card style="height: 70%; width: 90%">
+    <ion-card style="height: 70%; width: 90%" color="white">
         <iframe hidden="true" id="406" src="https://www.google.com/maps/d/embed?mid=1FB0YJxTXgL24FGCpCTob9Y62RSA&ehbc=2E312F" width="640" height="480"></iframe>
         <iframe hidden="true" id="402" src="https://www.google.com/maps/d/embed?mid=1UiqMmMbu2NHjNooNeQxBk_9I3Xc&hl=en_US&ehbc=2E312F" width="640" height="480"></iframe>
         <iframe hidden="true" id="309" src="https://www.google.com/maps/d/embed?mid=10m9yCjPbvy3T4CvKeiX0kLQijZ4&hl=en_US&ehbc=2E312F" width="640" height="480"></iframe>
     </ion-card>
+    <!-- <ion-label style="text-align: center; display:inline-block;">
+        Posicion actual
+    </ion-label>
+    <ion-card>
+        <div #mapDiv class="map-container"></div>
+    </ion-card>-->
 </ion-content>

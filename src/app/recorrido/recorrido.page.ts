@@ -19,6 +19,13 @@ export class RecorridoPage implements OnInit {
 
   map = null;
 
+  directionsService = new google.maps.DirectionsService();
+  directionsDisplay = new google.maps.DirectionsRenderer();
+  // parque simon bolivar
+  origin = { lat: -33.025228, lng: -71.551534 };
+  // Parque la 93
+  destination = { lat: -33.024702, lng: -71.551150 };
+
   markers: Marker[] = [
     {
       position: {
@@ -71,16 +78,17 @@ export class RecorridoPage implements OnInit {
   loadMap() {
     // create a new map by passing HTMLElement
     const mapEle: HTMLElement = document.getElementById('map');
-    // create LatLng object
-    const myLatLng = {lat: -33.024580, lng: -71.551846};
     // create map
     this.map = new google.maps.Map(mapEle, {
-      center: myLatLng,
+      center: this.origin,
       zoom: 15
     });
+
+    this.directionsDisplay.setMap(this.map);
   
     google.maps.event.addListenerOnce(this.map, 'idle', () => {
       mapEle.classList.add('show-map');
+      this.calculateRoute();
       this.renderMarkers();
     });
   }
@@ -98,6 +106,23 @@ export class RecorridoPage implements OnInit {
       title: marker.title
     });
   }
+
+  private calculateRoute() {
+    this.directionsService.route({
+      origin: this.origin,
+      destination: {
+        lat: -33.024702,
+        lng: -71.551155
+      },
+      travelMode: google.maps.TravelMode.WALKING,
+    }, (response, status)  => {
+      if (status === google.maps.DirectionsStatus.OK) {
+        this.directionsDisplay.setDirections(response);
+      } else {
+        alert('Could not display directions due to: ' + status);
+      }
+    });
+    }
 
 }
 
